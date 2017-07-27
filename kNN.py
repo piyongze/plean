@@ -11,6 +11,14 @@ def createDataSet():
 
 
 def classify0(inX, dataSet, labels, k):
+    """
+    分类器
+    :param inX:
+    :param dataSet:
+    :param labels:
+    :param k:
+    :return:
+    """
     dataSetSize = dataSet.shape[0]
     diffMat = tile(inX, (dataSetSize, 1)) - dataSet
     sqDiffMat = diffMat ** 2
@@ -26,6 +34,11 @@ def classify0(inX, dataSet, labels, k):
 
 
 def file2matrix(filename):
+    """
+    读取矩阵
+    :param filename:
+    :return:
+    """
     fr = open(filename)
     arrayOLines = fr.readlines()
     numberOfLines = len(arrayOLines)
@@ -42,6 +55,11 @@ def file2matrix(filename):
 
 
 def autoNorm(dataSet):
+    """
+    归一化处理特征数据
+    :param dataSet:
+    :return:
+    """
     minVals = dataSet.min(0)
     maxVals = dataSet.max(0)
     ranges = maxVals - minVals
@@ -53,6 +71,10 @@ def autoNorm(dataSet):
 
 
 def datingClassTest():
+    """
+    测试分类器
+    :return:
+    """
     hoRatio = 0.10
     datingDataMat, datingLabels = file2matrix('datingTestSet.txt')
     normMat, ranges, minVals = autoNorm(datingDataMat)
@@ -68,6 +90,10 @@ def datingClassTest():
 
 
 def classifyPerson():
+    """
+    使用分类器进行分类
+    :return:
+    """
     resultList = ['not at all','in small doses','in large doses']
     percentTats = float(input("percentage of time spend playing video games?"))
     ffMiles = float(input("frequent filer miles earned per year?"))
